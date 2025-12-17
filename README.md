@@ -11,7 +11,7 @@ This project is a robust and memory-safe implementation of a command-line to-do 
 ## Technical Implementation
 * **Language**: C
 * **Memory Management**: Implements **Dynamic Memory Allocation** (`malloc`/`realloc`/`free`) via geometric resizing for indefinite list scaling.
-* **Algorithms**: Implements **Quick Sort** ($O(n \log n)$) for task prioritization. 
+* **Algorithms**: Implements **Quick Sort** (O(n log n)) for task prioritization. 
 * **Safety**: Executed with **Valgrind** to ensure zero memory leaks.
 
 ## Getting Started
