@@ -23,7 +23,7 @@ This project is a robust and memory-safe implementation of a command-line to-do 
 Clone the repository and compile the source code:
 
 ```bash
-git clone [https://github.com/mcmullenleo/cli_task_manager.git](https://github.com/mcmullenleo/cli_task_manager.git)
+git clone https://github.com/mcmullenleo/cli_task_manager.git
 cd cli_task_manager
 
 make
