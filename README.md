@@ -21,7 +21,6 @@ This project is a robust and memory-safe implementation of a command-line to-do 
 
 ### Installing
 Clone the repository and compile the source code:
-
 ```bash
 git clone https://github.com/mcmullenleo/cli_task_manager.git
 cd cli_task_manager
@@ -31,9 +30,8 @@ make
 gcc main.c -o todo
 ```
 ### Executing Program
-
 ```bash
-gcc --version
-# If installed, run the executable
+# Run the executable
 ./todo
 ```
+Follow on-screen prompts to create or open to-do lists and create, delete, and list tasks.
