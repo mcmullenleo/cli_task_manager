@@ -293,8 +293,8 @@ void runMainLoop(todoList *td, char *filename) {
                 }
             }
             printf("\nEnter priority status\n\t1: high priority\n\t2: medium priority\n\t3:low priority.\n");
-            if (scanf("%d", &priority) != 1) {
-                printf("\tInvalid input. Priority must be an integer.\n");
+            if (scanf("%d", &priority) != 1 || priority < 1 || priority > 3) {
+                printf("\tInvalid input. Priority must be an integer between 1 and 3.\n");
                 int c;
                 while ((c = getchar()) != '\n' && c != EOF);
                 continue;
