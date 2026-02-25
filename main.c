@@ -159,7 +159,8 @@ void listTasks(todoList *td) {
     sortTasks(td);
     printf("\nTotal Tasks: %d\n", td->count);
     for (int i = 0; i < td->count; i++) {
-        printf("\tTask %d: %s; priority: %d\n", i+1, td->tasks[i].name, td->tasks[i].priority);
+        char status = td->tasks[i].completed ? 'X' : ' ';
+        printf("\t[%c] Task %d: %s; priority: %d\n", status, i+1, td->tasks[i].name, td->tasks[i].priority);
     }
 }
 
@@ -292,7 +293,7 @@ void runMainLoop(todoList *td, char *filename) {
                     name[i] = ';';
                 }
             }
-            printf("\nEnter priority status\n\t1: high priority\n\t2: medium priority\n\t3: low priority.\n");
+            printf("\nEnter priority status\n\t1: high priority\n\t2: medium priority\n\t3:low priority.\n");
             if (scanf("%d", &priority) != 1 || priority < 1 || priority > 3) {
                 printf("\tInvalid input. Priority must be an integer between 1 and 3.\n");
                 int c;
@@ -313,6 +314,27 @@ void runMainLoop(todoList *td, char *filename) {
             } else {
                 printf("\tTask not found.\n");
             }
+        }
+        else if (strcmp(input, "complete") == 0) {
+        char name[100];
+        printf("\tEnter task name to complete: ");
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+        fgets(name, sizeof(name),stdin);
+        name[strcspn(name, "\n")] = 0;
+        
+        int found = 0;
+        for (int i = 0; i < td->count; i++) {
+            if (strcmp(td->tasks[i].name, name) == 0) {
+                td->tasks[i].completed = 1;
+                printf("\tTask '%s' marked as completed!\n", name);
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            printf("\tTask not found.\n");
+        }
         }
         else if (strcmp(input, "save") == 0) {
             saveTasks(td, filename);
@@ -353,7 +375,7 @@ int main(int argc, char *argv[]) {
             tdl.count = 0;
             if (loadTasks(&tdl, filename)) {
                 printf("Exiting program. to-do list failed to load.\n");
-                return 1;
+                continue;
             }
             printf("\nWelcome to the task manager. Listed below are commands to navigate it.\nlist: prints the formatted to-do list.\nadd: add task to the list.\ndelete: delete task from the list.\nsave: save current to-do list state.\nexit: exit the task manager.\n");
             runMainLoop(&tdl, filename);
